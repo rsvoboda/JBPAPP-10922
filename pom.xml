@@ -12,7 +12,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
   <groupId>org.jboss.as.tests</groupId>
-  <artifactId>JBPAPP-10940</artifactId>
+  <artifactId>JBPAPP-10922</artifactId><!-- originally JBPAPP-10940 -->
   <version>1.0.0-SNAPSHOT</version>
 
   <licenses>
@@ -49,8 +49,7 @@
 		<version.org.jboss.jbossas.jboss-server-manager>1.0.4.Final</version.org.jboss.jbossas.jboss-server-manager>
 		<!-- version.org.jboss.jbossas.jboss-server-manager>1.0.5-SNAPSHOT</version.org.jboss.jbossas.jboss-server-manager -->
 		<version.org.slf4j>1.7.2</version.org.slf4j>
-		<!-- version.org.jboss.ws.native.jbossws-native-client>3.1.2.SP7</version.org.jboss.ws.native.jbossws-native-client-->
-		<version.org.jboss.ws.native.jbossws-native-client>3.1.2.SP10</version.org.jboss.ws.native.jbossws-native-client> <!-- 3.1.2.SP7 not available -->
+		<version.org.jboss.ws.native>3.1.2.SP18</version.org.jboss.ws.native>
 
 		<!--
 		<jboss.home>${project.basedir}/target/jboss-eap-6.2</jboss.home>
@@ -116,11 +115,37 @@
 			<version>${version.javax.xml.ws.jaxws-api}</version>
 			<scope>provided</scope>
 		</dependency>
+		<!--
+		<dependency>
+			<groupId>org.jboss.ws.native</groupId>
+			<artifactId>jbossws-native-jaxws-ext</artifactId>
+			<version>${version.org.jboss.ws.native}</version>
+			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+		      <groupId>org.jboss.ws.native</groupId>
+		      <artifactId>jbossws-native-jaxws</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		 -->
 		<dependency>
 			<groupId>org.jboss.ws.native</groupId>
 			<artifactId>jbossws-native-client</artifactId>
-			<version>${version.org.jboss.ws.native.jbossws-native-client}</version>
+			<version>${version.org.jboss.ws.native}</version>
 			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.ws.native</groupId>
+			<artifactId>jbossws-native-core</artifactId>
+			<version>${version.org.jboss.ws.native}</version>
+			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.jboss.remoting</groupId>
+					<artifactId>jboss-remoting</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>xalan</groupId>
@@ -299,6 +324,7 @@
 										<additionalClasspathElement>${jboss.home}/client/jbossws-native-core.jar</additionalClasspathElement>
 										<additionalClasspathElement>${jboss.home}/client/jbossws-native-client.jar</additionalClasspathElement>
 										<additionalClasspathElement>${jboss.home}/client/jbossws-native-jaxrpc.jar</additionalClasspathElement>
+										<additionalClasspathElement>${jboss.home}/client/jbossws-native-ext.jar</additionalClasspathElement>
 										<additionalClasspathElement>${jboss.home}/client/jbossws-spi.jar</additionalClasspathElement>
 										<additionalClasspathElement>${jboss.home}/client/jbossws-common.jar</additionalClasspathElement>
 										<additionalClasspathElement>${jboss.home}/client/jboss-xml-binding.jar</additionalClasspathElement>
